@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "WebSearch",
-      "Bash(OPENROUTER_API_KEY=\"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\" python3 llm_judge.py --input ../../data/test_scenarios.jsonl --output ../../data/test_evaluated.jsonl)"
-    ]
-  }
-}
