@@ -1,0 +1,9 @@
+openai>=1.0
+transformers>=4.40
+datasets>=2.18
+trl>=0.8
+peft>=0.10
+torch>=2.0
+accelerate>=0.28
+bitsandbytes>=0.43
+wandb

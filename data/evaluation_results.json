@@ -1,0 +1,707 @@
+{
+  "wins": {
+    "base": 23,
+    "dpo": 20,
+    "tie": 6
+  },
+  "scores": {
+    "base": {
+      "appropriateness": 4.448979591836735,
+      "role_fidelity": 4.26530612244898,
+      "collaborative_realism": 4.285714285714286
+    },
+    "dpo": {
+      "appropriateness": 4.489795918367347,
+      "role_fidelity": 4.244897959183674,
+      "collaborative_realism": 4.204081632653061
+    }
+  },
+  "details": [
+    {
+      "scenario": "mentoring",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 3,
+        "collaborative_realism": 3
+      }
+    },
+    {
+      "scenario": "cross_functional_coordination",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "escalation",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 3,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "mentoring",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "cross_functional_coordination",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "knowledge_sharing",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "task_delegation",
+      "winner": "tie",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "task_delegation",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 3,
+        "collaborative_realism": 3
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "status_reporting_lateral",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 3,
+        "role_fidelity": 3,
+        "collaborative_realism": 3
+      }
+    },
+    {
+      "scenario": "escalation",
+      "winner": "tie",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "cross_functional_coordination",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "status_reporting_lateral",
+      "winner": "tie",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "task_delegation",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 3
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "conflict_resolution",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "conflict_resolution",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 3,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "mentoring",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "status_reporting_up",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 3,
+        "role_fidelity": 4,
+        "collaborative_realism": 3
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "status_reporting_lateral",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "task_delegation",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "cross_functional_coordination",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "knowledge_sharing",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 3
+      }
+    },
+    {
+      "scenario": "status_reporting_lateral",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "escalation",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "cross_functional_coordination",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "cross_functional_coordination",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "knowledge_sharing",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 3,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "knowledge_sharing",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "knowledge_sharing",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 3
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "status_reporting_up",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "conflict_resolution",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 3,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "cross_functional_coordination",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "task_delegation",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 3
+      }
+    },
+    {
+      "scenario": "decision_making",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "status_reporting_down",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 3
+      }
+    },
+    {
+      "scenario": "knowledge_sharing",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "status_reporting_down",
+      "winner": "tie",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "status_reporting_up",
+      "winner": "tie",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "knowledge_sharing",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "knowledge_sharing",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "decision_making",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "conflict_resolution",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "conflict_resolution",
+      "winner": "tie",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "conflict_resolution",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 3
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      }
+    },
+    {
+      "scenario": "task_delegation",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 3
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "feedback_giving",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 3,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "knowledge_sharing",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "status_reporting_up",
+      "winner": "dpo",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 3,
+        "collaborative_realism": 3
+      },
+      "dpo_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    },
+    {
+      "scenario": "cross_functional_coordination",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 3,
+        "collaborative_realism": 3
+      }
+    },
+    {
+      "scenario": "conflict_resolution",
+      "winner": "base",
+      "base_scores": {
+        "appropriateness": 5,
+        "role_fidelity": 5,
+        "collaborative_realism": 5
+      },
+      "dpo_scores": {
+        "appropriateness": 4,
+        "role_fidelity": 4,
+        "collaborative_realism": 4
+      }
+    }
+  ]
+}

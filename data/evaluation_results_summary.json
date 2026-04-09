@@ -1,0 +1,20 @@
+{
+  "total_scenarios": 49,
+  "wins": {
+    "baseline": 32,
+    "dpo": 9,
+    "tie": 8
+  },
+  "mean_scores": {
+    "baseline": {
+      "appropriateness": 4.571428571428571,
+      "role_fidelity": 4.612244897959184,
+      "collaborative_realism": 4.591836734693878
+    },
+    "dpo": {
+      "appropriateness": 4.081632653061225,
+      "role_fidelity": 4.020408163265306,
+      "collaborative_realism": 3.938775510204082
+    }
+  }
+}
