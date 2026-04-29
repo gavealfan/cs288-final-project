@@ -1,4 +1,4 @@
-eu"""
+"""
 Local SFT training entrypoint for Apple Silicon / laptop workflows.
 
 Designed to run on Mac (MPS) without bitsandbytes/QLoRA dependencies.
@@ -99,6 +99,7 @@ def main() -> None:
         num_train_epochs=args.num_train_epochs,
         max_steps=args.max_steps,
         per_device_train_batch_size=args.per_device_train_batch_size,
+        per_device_eval_batch_size=1,
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         logging_steps=args.logging_steps,
         eval_strategy="steps" if eval_dataset is not None else "no",
@@ -108,6 +109,8 @@ def main() -> None:
         bf16=False,
         report_to="none",
         gradient_checkpointing=False,
+        dataloader_num_workers=0,
+        dataloader_pin_memory=False,
         optim="adamw_torch",
     )
 
