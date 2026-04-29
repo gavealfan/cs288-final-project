@@ -1,4 +1,22 @@
 {
+  "student_profile": "qwen3b",
+  "student_profiles": {
+    "tiny": {
+      "model_name": "distilgpt2",
+      "output_dir": "checkpoints/role-conditioned-sft-local-tiny",
+      "max_steps": 20
+    },
+    "medium": {
+      "model_name": "microsoft/phi-2",
+      "output_dir": "checkpoints/role-conditioned-sft-local-medium",
+      "max_steps": 50
+    },
+    "qwen3b": {
+      "model_name": "Qwen/Qwen2.5-3B-Instruct",
+      "output_dir": "checkpoints/role-conditioned-sft-local",
+      "max_steps": 200
+    }
+  },
   "build_teacher_data": true,
   "run_sft_local": true,
   "run_dpo": false,
@@ -10,8 +28,8 @@
     "output_sft_eval": "data/teacher_sft_eval.jsonl",
     "output_pref_train": "data/teacher_pref_train.jsonl",
     "output_pref_eval": "data/teacher_pref_eval.jsonl",
-    "base_model": "qwen/qwen-2.5-3b-instruct",
-    "teacher_model": "qwen/qwen3.5-397b-a17b",
+    "base_model": "mistralai/mistral-7b-instruct-v0.1",
+    "teacher_model": "mistralai/mixtral-8x7b-instruct",
     "max_scenarios": 0,
     "seed": 42
   },
@@ -39,10 +57,10 @@
     "eval_data_path": "data/evaluated.jsonl",
     "output_path": "data/evaluation_three_way.jsonl",
     "summary_path": "data/evaluation_three_way_summary.json",
-    "base_model": "qwen/qwen-2.5-3b-instruct",
-    "sft_model": "qwen/qwen-2.5-3b-instruct",
-    "dpo_model": "qwen/qwen-2.5-3b-instruct",
-    "judge_model": "google/gemini-2.0-flash-001",
+    "base_model": "mistralai/mistral-7b-instruct-v0.1",
+    "sft_model": "mistralai/mistral-7b-instruct-v0.1",
+    "dpo_model": "mistralai/mistral-7b-instruct-v0.1",
+    "judge_model": "openrouter/auto",
     "max_scenarios": 50,
     "seed": 42
   },

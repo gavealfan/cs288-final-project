@@ -1,6 +1,6 @@
 # CS288 Final Project
 
-## Local Pipeline (Qwen2.5-3B Student, Qwen3.5-397B-A17B Teacher)
+## Local Pipeline (Profile-Based Student + Low-Cost Teacher)
 
 This repo includes a reproducible local pipeline to:
 - build teacher-supervised SFT data,
@@ -27,6 +27,14 @@ export OPENROUTER_API_KEY="your_key_here"
 python src/pipeline/run_experiment.py --config configs/experiment_local_qwen3b.json
 ```
 
+### Student profile switch
+
+Set `student_profile` in `configs/experiment_local_qwen3b.json`:
+
+- `tiny` -> `distilgpt2` (fastest local debug)
+- `medium` -> `microsoft/phi-2` (balanced)
+- `qwen3b` -> `Qwen/Qwen2.5-3B-Instruct` (full target, slowest)
+
 ### Expected outputs
 
 - Teacher data files:
@@ -44,5 +52,6 @@ python src/pipeline/run_experiment.py --config configs/experiment_local_qwen3b.j
 
 ### Notes
 
-- Teacher model is configured as `qwen/qwen3.5-397b-a17b`.
+- Teacher model is configured as `mistralai/mixtral-8x7b-instruct`.
+- Base API model is `mistralai/mistral-7b-instruct-v0.1`.
 - The pipeline config is in `configs/experiment_local_qwen3b.json`.

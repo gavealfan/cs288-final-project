@@ -6,18 +6,23 @@ generated from the LLM-as-judge evaluation pipeline.
 """
 
 import json
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
+os.environ["USE_TF"] = "0"
+os.environ["TRANSFORMERS_NO_TF"] = "1"
+
+import torch
 from datasets import Dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, HfArgumentParser
 from trl import DPOConfig, DPOTrainer
-from peft import LoraConfig, get_peft_model
+from peft import LoraConfig
 
 
 @dataclass
 class ScriptArguments:
-    model_name: str = field(default="meta-llama/Llama-3.1-8B-Instruct")
+    model_name: str = field(default="Qwen/Qwen2.5-3B-Instruct")
     train_path: str = field(default="data/dpo_pairs_train.jsonl")
     eval_path: str = field(default="data/dpo_pairs_eval.jsonl")
     output_dir: str = field(default="checkpoints/role-conditioned-dpo")
@@ -33,6 +38,9 @@ class ScriptArguments:
     lora_alpha: int = field(default=32)
     lora_dropout: float = field(default=0.05)
     use_lora: bool = field(default=True)
+    report_to: str = field(default="none")
+    use_bf16: bool = field(default=False)
+    use_fp16: bool = field(default=False)
 
 
 def load_preference_data(path: str) -> Dataset:
@@ -68,11 +76,14 @@ def main():
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model_name,
-        torch_dtype="auto",
-        device_map="auto",
-    )
+    use_cuda = torch.cuda.is_available()
+    use_mps = torch.backends.mps.is_available()
+    dtype = torch.float16 if (use_cuda or use_mps) else torch.float32
+    model = AutoModelForCausalLM.from_pretrained(args.model_name, torch_dtype=dtype)
+    if use_cuda:
+        model = model.to("cuda")
+    elif use_mps:
+        model = model.to("mps")
 
     # Apply LoRA if requested
     if args.use_lora:
@@ -85,6 +96,11 @@ def main():
         )
     else:
         peft_config = None
+
+    train_fp16 = bool(args.use_fp16)
+    train_bf16 = bool(args.use_bf16)
+    if use_cuda and not train_fp16 and not train_bf16:
+        train_fp16 = True
 
     # Configure DPO training
     training_args = DPOConfig(
@@ -102,9 +118,10 @@ def main():
         eval_steps=50 if eval_dataset else None,
         save_strategy="steps",
         save_steps=100,
-        bf16=True,
-        report_to="wandb",
+        report_to=args.report_to,
         run_name="role-conditioned-dpo",
+        bf16=train_bf16,
+        fp16=train_fp16,
     )
 
     # Initialize trainer

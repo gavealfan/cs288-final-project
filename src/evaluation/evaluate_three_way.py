@@ -69,9 +69,9 @@ class ScriptArguments:
     eval_data_path: str = field(default="data/evaluated.jsonl")
     output_path: str = field(default="data/evaluation_three_way.jsonl")
     summary_path: str = field(default="data/evaluation_three_way_summary.json")
-    base_model: str = field(default="qwen/qwen-2.5-3b-instruct")
-    sft_model: str = field(default="qwen/qwen-2.5-3b-instruct")
-    dpo_model: str = field(default="qwen/qwen-2.5-3b-instruct")
+    base_model: str = field(default="mistralai/mistral-7b-instruct-v0.1")
+    sft_model: str = field(default="mistralai/mistral-7b-instruct-v0.1")
+    dpo_model: str = field(default="mistralai/mistral-7b-instruct-v0.1")
     base_system_prompt: str = field(default="")
     sft_system_prompt: str = field(default="")
     dpo_system_prompt: str = field(default="")
@@ -103,7 +103,10 @@ def call_openrouter(prompt: str, model: str, system_prompt: str = "", temperatur
         messages.append({"role": "system", "content": system_prompt})
     messages.append({"role": "user", "content": prompt})
     resp = client.chat.completions.create(model=model, messages=messages, temperature=temperature)
-    return resp.choices[0].message.content
+    content = resp.choices[0].message.content
+    if content is None or not str(content).strip():
+        raise ValueError(f"Empty completion from model={model!r}")
+    return str(content).strip()
 
 
 def build_prompt(scenario: dict) -> str:
@@ -121,6 +124,10 @@ def mean(values: list[float]) -> float:
 
 def main() -> None:
     args = HfArgumentParser(ScriptArguments).parse_args_into_dataclasses()[0]
+    if not os.environ.get("OPENROUTER_API_KEY"):
+        raise RuntimeError(
+            "OPENROUTER_API_KEY is missing. Set it before running this script."
+        )
     Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)
     Path(args.summary_path).parent.mkdir(parents=True, exist_ok=True)
 
@@ -139,6 +146,7 @@ def main() -> None:
     wins = {k: 0 for k in systems}
     pairwise = {"base>sft": 0, "base>dpo": 0, "sft>dpo": 0}
     dimension_scores = {k: defaultdict(list) for k in systems}
+    scenarios_with_full_ranking = 0
 
     with open(args.output_path, "w") as fout:
         for i, scenario in enumerate(scenarios, start=1):
@@ -172,13 +180,17 @@ def main() -> None:
 
                 ranking_letters = judgment.get("ranking", [])
                 ranking_systems = [letter_to_system[x] for x in ranking_letters if x in letter_to_system]
-                if len(ranking_systems) == 3:
+                if len(ranking_systems) == 3 and set(ranking_systems) == {"base", "sft", "dpo"}:
+                    scenarios_with_full_ranking += 1
                     wins[ranking_systems[0]] += 1
-                    if ranking_systems.index("base") < ranking_systems.index("sft"):
+                    ib = ranking_systems.index("base")
+                    isft = ranking_systems.index("sft")
+                    idpo = ranking_systems.index("dpo")
+                    if ib < isft:
                         pairwise["base>sft"] += 1
-                    if ranking_systems.index("base") < ranking_systems.index("dpo"):
+                    if ib < idpo:
                         pairwise["base>dpo"] += 1
-                    if ranking_systems.index("sft") < ranking_systems.index("dpo"):
+                    if isft < idpo:
                         pairwise["sft>dpo"] += 1
 
                 for letter, score_dict in judgment.get("scores", {}).items():
@@ -198,20 +210,22 @@ def main() -> None:
                     "ranking_systems": ranking_systems,
                 }
                 fout.write(json.dumps(rec) + "\n")
+                fout.flush()
                 if i % 5 == 0:
-                    print(f"Evaluated {i}/{len(scenarios)}")
+                    print(f"Evaluated {i}/{len(scenarios)}", flush=True)
             except Exception as exc:
-                print(f"Error on scenario {i}: {exc}")
+                print(f"Error on scenario {i}: {exc}", flush=True)
 
-    total = max(len(scenarios), 1)
+    denom = max(scenarios_with_full_ranking, 1)
     summary = {
         "total_scenarios": len(scenarios),
+        "scenarios_with_full_ranking": scenarios_with_full_ranking,
         "winner_counts": wins,
-        "winner_rates": {k: wins[k] / total for k in wins},
+        "winner_rates": {k: wins[k] / denom for k in wins},
         "pairwise_preference_rates": {
-            "base_over_sft": pairwise["base>sft"] / total,
-            "base_over_dpo": pairwise["base>dpo"] / total,
-            "sft_over_dpo": pairwise["sft>dpo"] / total,
+            "base_over_sft": pairwise["base>sft"] / denom,
+            "base_over_dpo": pairwise["base>dpo"] / denom,
+            "sft_over_dpo": pairwise["sft>dpo"] / denom,
         },
         "mean_scores": {
             system: {

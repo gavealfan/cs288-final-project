@@ -109,24 +109,7 @@ We evaluate on the 49 holdout scenarios representing unseen role--context combin
 
 \subsection{Overall Results}
 
-\begin{table}[t]
-\caption{Overall evaluation results on 49 holdout scenarios (unseen role--context combinations). Win rate reflects pairwise judge preferences; scores are means on a 1--5 scale.}
-\label{tab:overall}
-\begin{center}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Metric} & \textbf{Base Qwen} & \textbf{DPO-trained} & \textbf{$\Delta$} \\
-\midrule
-Win Rate (\%) & 46.9 & 40.8 & -- \\
-Tie Rate (\%) & \multicolumn{2}{c}{12.2} & -- \\
-\midrule
-Appropriateness & 4.45 & 4.49 & +0.04 \\
-Role Fidelity & 4.27 & 4.24 & $-$0.02 \\
-Collaborative Realism & 4.29 & 4.20 & $-$0.08 \\
-\bottomrule
-\end{tabular}
-\end{center}
-\end{table}
+\input{artifacts/report/overall_table.tex}
 
 Overall, the base Qwen model and DPO-trained model perform comparably (Table~\ref{tab:overall}), with the base model winning 46.9\% vs.\ 40.8\% for DPO (12.2\% ties). Mean scores are nearly identical across all three dimensions. However, this aggregate view masks substantial variation across interaction contexts.
 

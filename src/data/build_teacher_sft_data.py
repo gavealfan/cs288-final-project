@@ -84,8 +84,8 @@ class ScriptArguments:
     output_sft_eval: str = field(default="data/teacher_sft_eval.jsonl")
     output_pref_train: str = field(default="data/teacher_pref_train.jsonl")
     output_pref_eval: str = field(default="data/teacher_pref_eval.jsonl")
-    base_model: str = field(default="qwen/qwen-2.5-3b-instruct")
-    teacher_model: str = field(default="qwen/qwen-2.5-7b-instruct")
+    base_model: str = field(default="qwen/qwen2.5-3b-instruct")
+    teacher_model: str = field(default="qwen/qwen3.5-397b-a17b")
     base_system_prompt: str = field(default="")
     teacher_system_prompt: str = field(default="")
     temperature: float = field(default=0.7)
@@ -95,6 +95,10 @@ class ScriptArguments:
 
 def main() -> None:
     args = HfArgumentParser(ScriptArguments).parse_args_into_dataclasses()[0]
+    if not os.environ.get("OPENROUTER_API_KEY"):
+        raise RuntimeError(
+            "OPENROUTER_API_KEY is missing. Set it before running this script."
+        )
 
     scenarios = []
     with open(args.input_path) as f:
@@ -172,6 +176,11 @@ def main() -> None:
                 print(f"Processed {processed} scenarios")
         except Exception as exc:
             print(f"Error on scenario {idx}: {exc}")
+            if "not a valid model ID" in str(exc):
+                raise RuntimeError(
+                    f"Invalid OpenRouter model id in use. "
+                    f"base_model={args.base_model}, teacher_model={args.teacher_model}"
+                ) from exc
 
     sft_train.close()
     sft_eval.close()
@@ -179,6 +188,8 @@ def main() -> None:
     pref_eval.close()
 
     print(f"Done. Built data from {processed} scenarios.")
+    if processed == 0:
+        raise RuntimeError("No records were built. Check API key/model access and rerun.")
     print(f"SFT train/eval: {args.output_sft_train}, {args.output_sft_eval}")
     print(f"Pref train/eval: {args.output_pref_train}, {args.output_pref_eval}")
 

@@ -1,4 +1,4 @@
-"""
+eu"""
 Local SFT training entrypoint for Apple Silicon / laptop workflows.
 
 Designed to run on Mac (MPS) without bitsandbytes/QLoRA dependencies.
@@ -6,8 +6,12 @@ Uses LoRA adapters on top of the selected base model.
 """
 
 import json
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
+
+os.environ["USE_TF"] = "0"
+os.environ["TRANSFORMERS_NO_TF"] = "1"
 
 import torch
 from datasets import Dataset
@@ -60,6 +64,8 @@ def main() -> None:
 
     train_dataset = load_sft_data(args.train_path)
     eval_dataset = load_sft_data(args.eval_path) if Path(args.eval_path).exists() else None
+    if eval_dataset is not None and len(eval_dataset) == 0:
+        eval_dataset = None
 
     if args.max_train_samples > 0:
         train_dataset = train_dataset.select(range(min(args.max_train_samples, len(train_dataset))))

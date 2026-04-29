@@ -10,6 +10,7 @@ Reads a JSON config and runs selected stages:
 """
 
 import json
+import os
 import shlex
 import subprocess
 from dataclasses import dataclass, field
@@ -28,10 +29,31 @@ def run(cmd: str) -> None:
     subprocess.run(shlex.split(cmd), check=True)
 
 
+def resolve_sft_profile(cfg: dict) -> dict:
+    profile_name = cfg.get("student_profile", "qwen3b")
+    profiles = cfg.get("student_profiles", {})
+    profile = profiles.get(profile_name)
+    if profile is None:
+        return cfg["sft_local"]
+
+    base = dict(cfg["sft_local"])
+    base.update(profile)
+    print(f"[profile] student_profile={profile_name} model={base.get('model_name')}")
+    return base
+
+
 def main() -> None:
     args = HfArgumentParser(ScriptArguments).parse_args_into_dataclasses()[0]
     with open(args.config) as f:
         cfg = json.load(f)
+
+    needs_openrouter = cfg.get("build_teacher_data", True) or cfg.get("run_three_way_eval", True)
+    if needs_openrouter and not os.environ.get("OPENROUTER_API_KEY"):
+        raise RuntimeError(
+            "OPENROUTER_API_KEY is required for teacher generation/evaluation.\n"
+            "Set it first, e.g.:\n"
+            "  export OPENROUTER_API_KEY='your_key_here'"
+        )
 
     if cfg.get("build_teacher_data", True):
         t = cfg["teacher_data"]
@@ -49,7 +71,7 @@ def main() -> None:
         )
 
     if cfg.get("run_sft_local", True):
-        s = cfg["sft_local"]
+        s = resolve_sft_profile(cfg)
         run(
             "python src/training/train_sft_local.py "
             f"--model-name {s['model_name']} "
