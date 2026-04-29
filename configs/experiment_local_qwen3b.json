@@ -1,0 +1,53 @@
+{
+  "build_teacher_data": true,
+  "run_sft_local": true,
+  "run_dpo": false,
+  "run_three_way_eval": true,
+  "render_report_tables": true,
+  "teacher_data": {
+    "input_path": "data/evaluated.jsonl",
+    "output_sft_train": "data/teacher_sft_train.jsonl",
+    "output_sft_eval": "data/teacher_sft_eval.jsonl",
+    "output_pref_train": "data/teacher_pref_train.jsonl",
+    "output_pref_eval": "data/teacher_pref_eval.jsonl",
+    "base_model": "qwen/qwen-2.5-3b-instruct",
+    "teacher_model": "qwen/qwen3.5-397b-a17b",
+    "max_scenarios": 0,
+    "seed": 42
+  },
+  "sft_local": {
+    "model_name": "Qwen/Qwen2.5-3B-Instruct",
+    "train_path": "data/teacher_sft_train.jsonl",
+    "eval_path": "data/teacher_sft_eval.jsonl",
+    "output_dir": "checkpoints/role-conditioned-sft-local",
+    "num_train_epochs": 1,
+    "max_steps": 200,
+    "max_train_samples": 0,
+    "max_eval_samples": 0
+  },
+  "dpo": {
+    "model_name": "Qwen/Qwen2.5-3B-Instruct",
+    "train_path": "data/teacher_pref_train.jsonl",
+    "eval_path": "data/teacher_pref_eval.jsonl",
+    "output_dir": "checkpoints/role-conditioned-dpo-local",
+    "loss_type": "sigmoid",
+    "num_epochs": 1,
+    "per_device_batch_size": 1,
+    "gradient_accumulation_steps": 1
+  },
+  "eval": {
+    "eval_data_path": "data/evaluated.jsonl",
+    "output_path": "data/evaluation_three_way.jsonl",
+    "summary_path": "data/evaluation_three_way_summary.json",
+    "base_model": "qwen/qwen-2.5-3b-instruct",
+    "sft_model": "qwen/qwen-2.5-3b-instruct",
+    "dpo_model": "qwen/qwen-2.5-3b-instruct",
+    "judge_model": "google/gemini-2.0-flash-001",
+    "max_scenarios": 50,
+    "seed": 42
+  },
+  "report": {
+    "summary_path": "data/evaluation_three_way_summary.json",
+    "overall_table_tex": "artifacts/report/overall_table.tex"
+  }
+}
