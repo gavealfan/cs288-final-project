@@ -1,0 +1,26 @@
+{
+  "ablation": "role_conditioning_removal",
+  "total_scenarios": 49,
+  "wins": {
+    "with_role": 28,
+    "no_role": 19,
+    "tie": 2
+  },
+  "win_rates": {
+    "with_role": 0.5714285714285714,
+    "no_role": 0.3877551020408163,
+    "tie": 0.04081632653061224
+  },
+  "mean_scores": {
+    "with_role": {
+      "appropriateness": 4.448979591836735,
+      "role_fidelity": 4.387755102040816,
+      "collaborative_realism": 4.183673469387755
+    },
+    "no_role": {
+      "appropriateness": 4.183673469387755,
+      "role_fidelity": 4.1020408163265305,
+      "collaborative_realism": 3.795918367346939
+    }
+  }
+}
